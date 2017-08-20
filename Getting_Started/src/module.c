@@ -18,7 +18,7 @@ napi_value MyFunction(napi_env env, napi_callback_info info) {
   }
   napi_value myNumber;
   number = number * 2;
-  status = napi_create_number(env, number, &myNumber);
+  status = napi_create_int32(env, number, &myNumber);
 
   if (status != napi_ok) {
     napi_throw_error(env, NULL, "Unable to create return value");
