@@ -28,10 +28,18 @@ napi_value MyFunction(napi_env env, napi_callback_info info) {
 }
 
 void Init(napi_env env, napi_value exports, napi_value module, void *priv) {
-  napi_property_descriptor descs[] = {
-      {"my_function", 0, MyFunction, 0, 0, 0, napi_default, 0}
-  };
-  napi_status status = napi_define_properties(env, exports, 1, descs);
+  napi_status status;
+  napi_value fn;
+
+  status = napi_create_function(env, NULL, MyFunction, NULL, &fn);
+  if (status != napi_ok) {
+    napi_throw_error(env, NULL, "Unable to wrap native function");
+  }
+
+  status = napi_set_named_property(env, exports, "my_function", fn);
+  if (status != napi_ok) {
+    napi_throw_error(env, NULL, "Unable to populate exports");
+  }
 }
 
 NAPI_MODULE(addon, Init)
