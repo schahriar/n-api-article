@@ -12,7 +12,7 @@
     "url": "git+https://github.com/schahriar/n-api-article.git"
   },
   "engines": {
-    "node" : ">=8.0.0 <8.3.0"
+    "node" : "=8.3.0"
   },
   "author": "Schahriar SaffarShargh <info@schahriar.com>",
   "license": "MIT",
