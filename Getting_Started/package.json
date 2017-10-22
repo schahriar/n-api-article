@@ -4,7 +4,7 @@
   "description": "https://medium.com/@schahriar/n-api-and-getting-started-with-writing-c-addons-for-node-js-cf061b3eae75",
   "main": "module.js",
   "scripts": {
-    "start": "node-gyp configure build && node --napi-modules module.js",
+    "start": "node-gyp configure build && node module.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
