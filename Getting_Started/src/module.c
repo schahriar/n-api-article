@@ -27,11 +27,11 @@ napi_value MyFunction(napi_env env, napi_callback_info info) {
   return myNumber;
 }
 
-void Init(napi_env env, napi_value exports, napi_value module, void *priv) {
+napi_value Init(napi_env env, napi_value exports) {
   napi_status status;
   napi_value fn;
 
-  status = napi_create_function(env, NULL, MyFunction, NULL, &fn);
+  status = napi_create_function(env, NULL, 0, MyFunction, NULL, &fn);
   if (status != napi_ok) {
     napi_throw_error(env, NULL, "Unable to wrap native function");
   }
@@ -40,6 +40,8 @@ void Init(napi_env env, napi_value exports, napi_value module, void *priv) {
   if (status != napi_ok) {
     napi_throw_error(env, NULL, "Unable to populate exports");
   }
+
+  return exports;
 }
 
-NAPI_MODULE(addon, Init)
+NAPI_MODULE(NODE_GYP_MODULE_NAME, Init)
